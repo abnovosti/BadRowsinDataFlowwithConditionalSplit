@@ -1,0 +1,27 @@
+{
+	"name": "triggerforpipeline1",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "1 Functioning Pipeline1 Set Variables and If Condition",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"FileName": "HourlySales.csv"
+				}
+			}
+		],
+		"type": "BlobEventsTrigger",
+		"typeProperties": {
+			"blobPathBeginsWith": "/carscountriesmovies/blobs/",
+			"ignoreEmptyBlobs": true,
+			"scope": "/subscriptions/2ddb5a94-fad7-411d-a850-bf60aec2b751/resourceGroups/BFTRG/providers/Microsoft.Storage/storageAccounts/bftstorage",
+			"events": [
+				"Microsoft.Storage.BlobCreated"
+			]
+		}
+	}
+}

@@ -1,0 +1,81 @@
+{
+	"name": "BadRowsHandlingDatasetSOURCE",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "Tableu 2020.csv",
+				"container": "badrowsproject"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Security",
+				"type": "String"
+			},
+			{
+				"name": "Security Description",
+				"type": "String"
+			},
+			{
+				"name": "Account Nickname",
+				"type": "String"
+			},
+			{
+				"name": "Account Registration",
+				"type": "String"
+			},
+			{
+				"name": "Account #",
+				"type": "String"
+			},
+			{
+				"name": "Acquisition Date",
+				"type": "String"
+			},
+			{
+				"name": "Liquidation Date",
+				"type": "String"
+			},
+			{
+				"name": "Quantity",
+				"type": "String"
+			},
+			{
+				"name": "Acquisition Price ($)",
+				"type": "String"
+			},
+			{
+				"name": "Acquisition Cost ($)",
+				"type": "String"
+			},
+			{
+				"name": "Liquidation Price ($)",
+				"type": "String"
+			},
+			{
+				"name": "Liquidation Amount ($)",
+				"type": "String"
+			},
+			{
+				"name": "Gain/Loss ($)",
+				"type": "String"
+			},
+			{
+				"name": "Short/Long",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,30 @@
+{
+	"name": "4 Databricks Pipeline",
+	"properties": {
+		"activities": [
+			{
+				"name": "Notebook1",
+				"type": "DatabricksNotebook",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Users/evakr32_outlook.com#ext#@evakr32outlook.onmicrosoft.com"
+				},
+				"linkedServiceName": {
+					"referenceName": "LinkedServicetoAzureDatabricks1",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2022-02-19T02:29:43Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

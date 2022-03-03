@@ -1,0 +1,9 @@
+{
+	"name": "BFT",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "7df9bfe8-0827-49ec-872e-59cf65323fc5",
+		"tenantId": "d73ea9c1-abeb-4004-b3b2-f698dad8226f"
+	}
+}

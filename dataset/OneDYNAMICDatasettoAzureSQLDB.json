@@ -1,0 +1,45 @@
+{
+	"name": "OneDYNAMICDatasettoAzureSQLDB",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "1 LINKEDSERVICE AZURESQLDB",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"TablenameinAzureSQLDB": {
+				"type": "string",
+				"defaultValue": "CarsHourlySales"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Name",
+				"type": "varchar"
+			},
+			{
+				"name": "Model",
+				"type": "varchar"
+			},
+			{
+				"name": "Length",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": {
+				"value": "@dataset().TablenameinAzureSQLDB",
+				"type": "Expression"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

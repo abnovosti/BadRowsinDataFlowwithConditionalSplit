@@ -1,0 +1,44 @@
+{
+	"name": "StaticDatasetBlob",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "1 LINKEDSERVICE BLOB",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "\n\n@concat(item(),' ',formatDateTime(utcnow(),'MM-DD-YYYY'),'csv')",
+					"type": "Expression"
+				},
+				"container": "carscountriesmovies"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "ID",
+				"type": "String"
+			},
+			{
+				"name": "Name",
+				"type": "String"
+			},
+			{
+				"name": "Model",
+				"type": "String"
+			},
+			{
+				"name": "Length",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

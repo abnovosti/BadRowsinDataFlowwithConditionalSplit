@@ -1,0 +1,45 @@
+{
+	"name": "FixingErrorRows",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "BadRowsHandlingDatasetSOURCE",
+						"type": "DatasetReference"
+					},
+					"name": "BadRowsHandling"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ErrorRowsSinkDatasetAzureSQLDB",
+						"type": "DatasetReference"
+					},
+					"name": "sinkforErrorRows"
+				},
+				{
+					"dataset": {
+						"referenceName": "GoodRowsDestinationSinkAzureSQLDB",
+						"type": "DatasetReference"
+					},
+					"name": "sinkforGoodRows"
+				}
+			],
+			"transformations": [
+				{
+					"name": "split1"
+				},
+				{
+					"name": "ExtraColumnsforErrorRows"
+				},
+				{
+					"name": "derivedColumnforGoodRows"
+				}
+			],
+			"script": "source(output(\n\t\tSecurity as string,\n\t\t{Security Description} as string,\n\t\t{Account Nickname} as string,\n\t\t{Account Registration} as string,\n\t\t{Account #} as string,\n\t\t{Acquisition Date} as string,\n\t\t{Liquidation Date} as string,\n\t\tQuantity as string,\n\t\t{Acquisition Price ($)} as string,\n\t\t{Acquisition Cost ($)} as string,\n\t\t{Liquidation Price ($)} as string,\n\t\t{Liquidation Amount ($)} as string,\n\t\t{Gain/Loss ($)} as string,\n\t\t{Short/Long} as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> BadRowsHandling\nBadRowsHandling split(isNull(toDate('Acquisition Date', '[m]m/[d]d/yyyy')),\n\tdisjoint: true) ~> split1@(ErrorRowsWrongAcquisitionDateFormat, GoodRows)\nsplit1@ErrorRowsWrongAcquisitionDateFormat derive(BadRowsSourceFileName = 'Tableu 2020.csv') ~> ExtraColumnsforErrorRows\nsplit1@GoodRows derive(GoodRowsSourceFileName = 'Tableu 2020.csvGoodRows') ~> derivedColumnforGoodRows\nExtraColumnsforErrorRows sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tSecurity as string,\n\t\tSecurity_Description as string,\n\t\tAccount_Nickname as string,\n\t\tAccount_Registration as string,\n\t\tAccount as string,\n\t\tAcquisition_Date as string,\n\t\tLiquidation_Date as string,\n\t\tQuantity as string,\n\t\tAcquisition_Price as double,\n\t\tAcquisition_Cost as double,\n\t\tLiquidation_Price as double,\n\t\tLiquidation_Amount as double,\n\t\tGain_Loss as string,\n\t\tShort_Long as string,\n\t\tcolumn15 as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tSecurity,\n\t\tSecurity_Description = {Security Description},\n\t\tAccount_Nickname = {Account Nickname},\n\t\tAccount_Registration = {Account Registration},\n\t\tAccount = {Account #},\n\t\tAcquisition_Date = {Acquisition Date},\n\t\tLiquidation_Date = {Liquidation Date},\n\t\tQuantity,\n\t\tAcquisition_Price = {Acquisition Price ($)},\n\t\tAcquisition_Cost = {Acquisition Cost ($)},\n\t\tLiquidation_Price = {Liquidation Price ($)},\n\t\tLiquidation_Amount = {Liquidation Amount ($)},\n\t\tGain_Loss = {Gain/Loss ($)},\n\t\tShort_Long = {Short/Long},\n\t\tcolumn15 = BadRowsSourceFileName\n\t)) ~> sinkforErrorRows\nderivedColumnforGoodRows sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tSecurity as string,\n\t\tSecurity_Description as string,\n\t\tAccount_Nickname as string,\n\t\tAccount_Registration as string,\n\t\tAccount as string,\n\t\tAcquisition_Date as timestamp,\n\t\tLiquidation_Date as timestamp,\n\t\tQuantity as string,\n\t\tAcquisition_Price as double,\n\t\tAcquisition_Cost as double,\n\t\tLiquidation_Price as double,\n\t\tLiquidation_Amount as double,\n\t\tGain_Loss as string,\n\t\tShort_Long as string,\n\t\tcolumn15 as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tSecurity,\n\t\tSecurity_Description = {Security Description},\n\t\tAccount_Nickname = {Account Nickname},\n\t\tAccount_Registration = {Account Registration},\n\t\tAccount = {Account #},\n\t\tAcquisition_Date = {Acquisition Date},\n\t\tLiquidation_Date = {Liquidation Date},\n\t\tQuantity,\n\t\tAcquisition_Price = {Acquisition Price ($)},\n\t\tAcquisition_Cost = {Acquisition Cost ($)},\n\t\tLiquidation_Price = {Liquidation Price ($)},\n\t\tLiquidation_Amount = {Liquidation Amount ($)},\n\t\tGain_Loss = {Gain/Loss ($)},\n\t\tShort_Long = {Short/Long},\n\t\tcolumn15 = GoodRowsSourceFileName\n\t)) ~> sinkforGoodRows"
+		}
+	}
+}

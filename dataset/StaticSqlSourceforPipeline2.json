@@ -1,0 +1,36 @@
+{
+	"name": "StaticSqlSourceforPipeline2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "StaticLinkedServiceSourceSQLforPipeline2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Name",
+				"type": "varchar"
+			},
+			{
+				"name": "Model",
+				"type": "varchar"
+			},
+			{
+				"name": "Length",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "ForEachwithArray"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,27 @@
+{
+	"name": "pipeline1",
+	"properties": {
+		"activities": [
+			{
+				"name": "Web1",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://api.polygon.io/vX/reference/financials?ticker=SPY&include_sources=true&apiKey=%TjGDgs_njlbXLGzgOdhgF8ZmfyqY5Rx7%3E",
+					"method": "GET"
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2022-03-02T02:50:01Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

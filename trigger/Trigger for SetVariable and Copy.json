@@ -1,0 +1,18 @@
+{
+	"name": "Trigger for SetVariable and Copy",
+	"properties": {
+		"description": "Project:\nGiven: Files in Blob that are updated hourly and daily -HourlySales.csv and DailySales.csv, respectively.\n\nNeed to move them to HourlySales Table and Daily Sales Table, respectively.\n\nUsing Event based Trigger \n@triggerBody.fileName\n\nFilename - pipeline parameter (pops up on triggers)\nFileType - variable (internal to pipeline) ->set variable\n\nSet variable is used to \nReplace DailySales.csv name to become Daily.csv.\n\nThen the newly names files feed to if condition, and if equals to Hourly, do this, \nif equals to Daily, do that.",
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Minute",
+				"interval": 15,
+				"startTime": "2022-02-23T23:55:00",
+				"timeZone": "Eastern Standard Time"
+			}
+		}
+	}
+}

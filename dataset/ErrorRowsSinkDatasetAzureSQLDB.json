@@ -1,0 +1,82 @@
+{
+	"name": "ErrorRowsSinkDatasetAzureSQLDB",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "1 LINKEDSERVICE AZURESQLDB",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Security",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Security_Description",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Account_Nickname",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Account_Registration",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Account",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Acquisition_Date",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Liquidation_Date",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Quantity",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Acquisition_Price",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Acquisition_Cost",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Liquidation_Price",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Liquidation_Amount",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Gain_Loss",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Short_Long",
+				"type": "nvarchar"
+			},
+			{
+				"name": "column15",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Tableu 2020_badrows"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
