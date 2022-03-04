@@ -1,5 +1,5 @@
 {
-	"name": "Delete files older than 30 days",
+	"name": "Delete files older than 15 days",
 	"properties": {
 		"description": "Please input a folder path as the parameter for this pipeline, and the pipeline will delete files which were last modified more than 30 days ago under the particular folder path.",
 		"activities": [
@@ -46,7 +46,7 @@
 						"type": "AzureBlobStorageReadSettings",
 						"recursive": true,
 						"modifiedDatetimeEnd": {
-							"value": "@{adddays(pipeline().TriggerTime, -30)}",
+							"value": "@{adddays(pipeline().TriggerTime, -15)}",
 							"type": "Expression"
 						},
 						"wildcardFileName": "*"
@@ -62,10 +62,6 @@
 			"SourceDirectory": {
 				"type": "string",
 				"defaultValue": "subfolder"
-			},
-			"LoggingPath": {
-				"type": "string",
-				"defaultValue": "loggingfolder/subfolder"
 			}
 		},
 		"annotations": []
